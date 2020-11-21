@@ -18,18 +18,19 @@ void sayHelloWorld() {
     println "Hello World from method"
 }
 
-int doubleIt(int i) {
-    println i
-    i * 2
-}
-
-println doubleIt(21)
-
-int doubleItReturnLastLine(int i) {
+def doubleItUsingDef(i) {
     println i
     i * 2
     def y = i
 }
 
-println doubleItReturnLastLine(21)
+println doubleItUsingDef(21)
+
+Integer doubleItUsingStrictType(Integer i) {
+    println i
+    i * 2
+    Integer y = i
+}
+
+println doubleItUsingStrictType(21)
 
