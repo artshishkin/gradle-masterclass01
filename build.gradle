@@ -1,0 +1,9 @@
+group 'net.shyshkin.study.gradle'
+version '1.0-SNAPSHOT'
+
+defaultTasks 'hello'
+
+task("hello").doLast {
+    println "Hello World"
+}
+
