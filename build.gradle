@@ -1,9 +1,20 @@
+import java.text.SimpleDateFormat
+
 group 'net.shyshkin.study.gradle'
 version '1.0-SNAPSHOT'
 
-defaultTasks 'hello'
+println "Hello World"
+System.out.println "Hello World sout"
+System.out.println("Hello World sout java style");
 
-task("hello").doLast {
-    println "Hello World"
+def sdf = new SimpleDateFormat("yyy-MM-dd'T'HH:mm:ss'Z'")
+sdf.setTimeZone(TimeZone.getTimeZone("UTC"))
+
+println "Hello World now:" + sdf.format(new Date())
+
+sayHelloWorld()
+
+void sayHelloWorld(){
+    println "Hello World from method"
 }
 
