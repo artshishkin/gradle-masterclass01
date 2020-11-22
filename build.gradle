@@ -67,3 +67,42 @@ Closure echoMultiClosureType = { a, b, c ->
 }
 
 println echoMultiClosureType("uno", "duos", "tres")
+
+//pass closures as parameters
+
+def oneArgMethod(closure) {
+    closure() * 2
+}
+//with parentesis
+println oneArgMethod({ 4 })
+// you can skip parentesis
+println oneArgMethod { 10 }
+
+def twoArgMethod(factor, closure) {
+    closure() * factor
+}
+
+println twoArgMethod(123, { 321 })
+
+twoArgMethod 123, { 321 }
+
+//multiline closure
+
+def i = oneArgMethod {
+    def y = 3
+    y * 2
+}
+
+println i
+
+//common use for closure ... iterators!
+
+//traditional way
+for (int j in [1, 2, 3]) {
+    println j
+}
+
+//using closures
+[1,2,3].each {
+    println it
+}
