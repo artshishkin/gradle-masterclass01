@@ -56,3 +56,35 @@ println "I'm training in ${myCourse.toUpperCase()}"
 println "BUT"
 println 'I am training in ${myCourse.toUpperCase()} (if use single quotes)'
 
+//Properties
+
+class Person {
+    String name
+    Integer age
+
+    Person(String name, Integer age) {
+        this.name = name
+        this.age = age
+    }
+}
+
+def p1 = new Person("Art", 37)
+println p1.getAge()
+println p1.age
+p1.age = 36
+println p1.age
+p1.setAge(35)
+println p1.age
+
+println p1.getName()
+
+// with a Map
+
+Map m = new HashMap();
+
+m.put("foo", "Fred")
+println m.get("foo")
+
+m.bar = "Art"
+println m
+println m.foo
