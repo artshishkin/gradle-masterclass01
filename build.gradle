@@ -1,90 +1,69 @@
-import java.text.SimpleDateFormat
-
 group 'net.shyshkin.study.gradle'
 version '1.0-SNAPSHOT'
 
-println "Hello World"
-System.out.println "Hello World sout"
-System.out.println("Hello World sout java style");
+//Closures
+// kind a like lambda in Java 8 or code blocks in SmallTalk
+def echoIt = {}
 
-def sdf = new SimpleDateFormat("yyy-MM-dd'T'HH:mm:ss'Z'")
-sdf.setTimeZone(TimeZone.getTimeZone("UTC"))
+println "result of closure evaluation is: " + echoIt()
+println "actual closure is: " + echoIt + " (calling toString() method on a closure)"
 
-println "Hello World now:" + sdf.format(new Date())
+println "-----------------------------------------"
 
-sayHelloWorld()
-
-void sayHelloWorld() {
-    println "Hello World from method"
+def echoIt2 = {
+    println "Hello World"
 }
 
-def doubleItUsingDef(i) {
-    println i
-    i * 2
-    def y = i
+println "result of closure evaluation is: " + echoIt2()
+println "actual closure is: " + echoIt2 + " (calling toString() method on a closure)"
+echoIt2()
+
+def echoPar = {
+    parameter ->
+        println parameter
 }
 
-println doubleItUsingDef(21)
+echoPar('Hello from parametered Closure')
 
-Integer doubleItUsingStrictType(Integer i) {
-    println i
-    i * 2
-    Integer y = i
+def echoParTyped = {
+    String parameter ->
+        println parameter
 }
 
-println doubleItUsingStrictType(21)
+echoParTyped("hello typed closure")
 
-def s1 = "double quots"
-def s2 = 'single quots'
-println s1
-println s2
+//Parameter IT
 
-def multiLineString = """   This
-    is a
-    multiline
-    string
-"""
-
-println multiLineString
-
-//String interpolation
-def x = 4
-println "x is equal to $x"
-
-def myCourse = "gradle"
-println "I'm training in ${myCourse.toUpperCase()}"
-println "BUT"
-println 'I am training in ${myCourse.toUpperCase()} (if use single quotes)'
-
-//Properties
-
-class Person {
-    String name
-    Integer age
-
-    Person(String name, Integer age) {
-        this.name = name
-        this.age = age
-    }
+def echoItIt = {
+    println it
 }
 
-def p1 = new Person("Art", 37)
-println p1.getAge()
-println p1.age
-p1.age = 36
-println p1.age
-p1.setAge(35)
-println p1.age
+echoItIt("Hello with reserved keyword parameter `it`")
 
-println p1.getName()
+//Multi parameters
 
-// with a Map
+def echoMulti = { a, b, c ->
+    println a + b + c
+}
 
-Map m = new HashMap();
+echoMulti("Hello", " World!", ' Art!')
+echoMulti("Hello ", 2, 3)
+echoMulti(1, 2, 'Hello')
 
-m.put("foo", "Fred")
-println m.get("foo")
+def echoMulti2 = { a, b, c ->
+    println a
+    println b
+    println c
+    "quatro"
+}
 
-m.bar = "Art"
-println m
-println m.foo
+println echoMulti2("uno", "duos", "tres")
+
+Closure echoMultiClosureType = { a, b, c ->
+    println a
+    println b
+    println c
+    "quatro"
+}
+
+println echoMultiClosureType("uno", "duos", "tres")
