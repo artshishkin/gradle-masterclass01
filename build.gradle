@@ -1,108 +1,56 @@
 group 'net.shyshkin.study.gradle'
 version '1.0-SNAPSHOT'
 
-//Closures
-// kind a like lambda in Java 8 or code blocks in SmallTalk
-def echoIt = {}
+//Closure resolution
 
-println "result of closure evaluation is: " + echoIt()
-println "actual closure is: " + echoIt + " (calling toString() method on a closure)"
+class Person {
+    String name = "Fred"
 
-println "-----------------------------------------"
-
-def echoIt2 = {
-    println "Hello World"
+    Closure nameSayer = {
+        println name
+    }
 }
 
-println "result of closure evaluation is: " + echoIt2()
-println "actual closure is: " + echoIt2 + " (calling toString() method on a closure)"
-echoIt2()
+def p1 = new Person()
+p1.nameSayer()
 
-def echoPar = {
-    parameter ->
-        println parameter
+p1.name = "Art"
+p1.nameSayer()
+
+
+def theName = "John"
+
+def sayName = {
+    println theName
 }
 
-echoPar('Hello from parametered Closure')
+sayName()
 
-def echoParTyped = {
-    String parameter ->
-        println parameter
+theName = "Bill"
+sayName()
+
+//delegate object
+
+class Person2 {
+    String theName
+    Integer theAge
+
+    Person2(String theName, Integer theAge) {
+        this.theName = theName
+        this.theAge = theAge
+    }
+
+    def executeInside(Closure c) {
+        c.delegate = this
+        c()
+    }
 }
 
-echoParTyped("hello typed closure")
+println "------------------------------"
+def p2 = new Person2("Art", 37)
 
-//Parameter IT
+//println p2.theName
 
-def echoItIt = {
-    println it
-}
+p2.executeInside { println theName}
 
-echoItIt("Hello with reserved keyword parameter `it`")
-
-//Multi parameters
-
-def echoMulti = { a, b, c ->
-    println a + b + c
-}
-
-echoMulti("Hello", " World!", ' Art!')
-echoMulti("Hello ", 2, 3)
-echoMulti(1, 2, 'Hello')
-
-def echoMulti2 = { a, b, c ->
-    println a
-    println b
-    println c
-    "quatro"
-}
-
-println echoMulti2("uno", "duos", "tres")
-
-Closure echoMultiClosureType = { a, b, c ->
-    println a
-    println b
-    println c
-    "quatro"
-}
-
-println echoMultiClosureType("uno", "duos", "tres")
-
-//pass closures as parameters
-
-def oneArgMethod(closure) {
-    closure() * 2
-}
-//with parentesis
-println oneArgMethod({ 4 })
-// you can skip parentesis
-println oneArgMethod { 10 }
-
-def twoArgMethod(factor, closure) {
-    closure() * factor
-}
-
-println twoArgMethod(123, { 321 })
-
-twoArgMethod 123, { 321 }
-
-//multiline closure
-
-def i = oneArgMethod {
-    def y = 3
-    y * 2
-}
-
-println i
-
-//common use for closure ... iterators!
-
-//traditional way
-for (int j in [1, 2, 3]) {
-    println j
-}
-
-//using closures
-[1,2,3].each {
-    println it
-}
+//using closure we can execute code without changing class
