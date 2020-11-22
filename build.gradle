@@ -34,3 +34,25 @@ Integer doubleItUsingStrictType(Integer i) {
 
 println doubleItUsingStrictType(21)
 
+def s1 = "double quots"
+def s2 = 'single quots'
+println s1
+println s2
+
+def multiLineString = """   This
+    is a
+    multiline
+    string
+"""
+
+println multiLineString
+
+//String interpolation
+def x = 4
+println "x is equal to $x"
+
+def myCourse = "gradle"
+println "I'm training in ${myCourse.toUpperCase()}"
+println "BUT"
+println 'I am training in ${myCourse.toUpperCase()} (if use single quotes)'
+
