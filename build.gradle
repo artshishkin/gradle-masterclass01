@@ -1,8 +1,4 @@
 group 'net.shyshkin.study.gradle'
 version '1.0-SNAPSHOT'
 
-logger.info "Hello!"
-
-apply {
-    println "hello from apply closure"
-}
+println  "build.gradle ---> This is executed during the Configuration phase - timestamp @ ${gradle.timestamp()}"

@@ -1,2 +1,3 @@
 rootProject.name = 'gradle-masterclass01'
 
+println  "settings.gradle ---> This is executed during the Initialization phase - timestamp @ ${gradle.timestamp()}"
