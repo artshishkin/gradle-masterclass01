@@ -11,3 +11,9 @@
 #####  8. Lets discover 'types' in Groovy
 
 Groovy is a dynamic language. So there is no compile time, errors will occur in run time.
+
+#### Section 4: Gradle under the hood
+
+#####  14. Introduction the Gradle Object Model
+
+To enable logger in Run Configuration set argument `-i`

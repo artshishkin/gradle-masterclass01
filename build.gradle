@@ -1,56 +1,8 @@
 group 'net.shyshkin.study.gradle'
 version '1.0-SNAPSHOT'
 
-//Closure resolution
+logger.info "Hello!"
 
-class Person {
-    String name = "Fred"
-
-    Closure nameSayer = {
-        println name
-    }
+apply {
+    println "hello from apply closure"
 }
-
-def p1 = new Person()
-p1.nameSayer()
-
-p1.name = "Art"
-p1.nameSayer()
-
-
-def theName = "John"
-
-def sayName = {
-    println theName
-}
-
-sayName()
-
-theName = "Bill"
-sayName()
-
-//delegate object
-
-class Person2 {
-    String theName
-    Integer theAge
-
-    Person2(String theName, Integer theAge) {
-        this.theName = theName
-        this.theAge = theAge
-    }
-
-    def executeInside(Closure c) {
-        c.delegate = this
-        c()
-    }
-}
-
-println "------------------------------"
-def p2 = new Person2("Art", 37)
-
-//println p2.theName
-
-p2.executeInside { println theName}
-
-//using closure we can execute code without changing class
